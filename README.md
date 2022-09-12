@@ -10,6 +10,6 @@ Converts weird blog JSON to HTML.
   - Enter the path to the output file
     - This is optional: leaving this blank results in an output file of "`input-file`_out.html"
 - Through UI:
-  - Execute `jsonconvert-ui.py`
+  - Execute `jsonconvert_ui.py`
   - Paste the JSON into the left text field
   - Press "Convert" or type "ctrl+enter"
