@@ -16,7 +16,7 @@ def unescape(s: str) -> str:
     return re.sub(r"\\(.)", r"\1", s)
 
 def replace_markdown_links(s: str):
-    return re.sub(r"\[.+\]\(.+\)", r"""<a href="\2">\1</a>""", s)
+    return re.sub(r"\[(.+)\]\((.+\))", r"""<a href="\2">\1</a>""", s)
 
 def replace_curly_quotes(s: str):
     return re.sub(r"([“”])", r'"', s)
