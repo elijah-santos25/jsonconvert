@@ -4,7 +4,8 @@ import re
 # --- Constants ---
 
 VIDEO_SOURCES = {
-    "youtube": """<iframe width="560" height="315" src="https://www.youtube.com/embed/{}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>""",
+    "youtube": """<iframe width="560" height="315" src="https://www.youtube.com/embed/#id#" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>""",
+    "ooyala": """<script src='//player.ooyala.com/v3/#id#'></script><div id='ooyalaplayer' style='width:1920px;height:1080px'></div><script>OO.ready(function() { OO.Player.create('ooyalaplayer', '#id#'); });</script><noscript><div>Please enable Javascript to watch this video</div></noscript>"""
 }
 _using_terminal = False
 
@@ -48,7 +49,7 @@ def parse_video(s: dict) -> str:
     if source_html == None:
         return parse_unrecognized(s)
     
-    return source_html.format(s["remote_id"])
+    return re.sub(r"#id#", s["remote_id"], source_html)
 
 def parse_list(s: dict) -> str:
     lines = s["text"].split("\n")
