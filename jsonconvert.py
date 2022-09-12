@@ -6,6 +6,7 @@ import re
 VIDEO_SOURCES = {
     "youtube": """<iframe width="560" height="315" src="https://www.youtube.com/embed/{}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>""",
 }
+_using_terminal = False
 
 # --- Utilities ---
 
@@ -24,6 +25,8 @@ def replace_curly_quotes(s: str):
 # --- Parsers ---
 
 def parse_unrecognized(s: dict):
+    if not _using_terminal:
+        raise Exception("Parser encountered unrecognized value: " + str(s))
     print("Parser found unrecognized value, please enter replacement html:")
     print(s)
     return input("Replacement HTML: ")
@@ -95,6 +98,7 @@ def convert_to_html(filestr: str) -> str:
 # --- Main ---
 
 if __name__ == "__main__":
+    _using_terminal = True
     fname_in = input("Input File > ")
     fname_out = input("Output File > ")
 

@@ -11,8 +11,8 @@ class ConverterWindow (tk.Tk):
         html = ""
         try:
             html = jc.convert_to_html(json)
-        except:
-            html = "An error occurred during conversion."
+        except Exception as e:
+            html = str(type(e)) + ": " + str(e)
         self._output_text.delete("1.0", "end")
         self._output_text.insert("1.0", html)
 
