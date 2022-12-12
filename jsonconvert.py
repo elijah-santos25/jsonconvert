@@ -83,7 +83,7 @@ PARSERS = {
 # --- Main Converter ---
 
 def handle_item(s: dict) -> str:
-    parser = PARSERS[s["type"]]
+    parser = PARSERS.get(s["type"])
     if parser == None:
         return parse_unrecognized(s["data"])
     return parser(s["data"])
